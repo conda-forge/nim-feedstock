@@ -11,7 +11,7 @@ source:
   folder: nim
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not linux64]
 
 requirements:
@@ -24,6 +24,9 @@ requirements:
 test:
   commands:
     - nim -v
+    - ls -larth
+    - echo 'echo "hello"' >| foo.nim
+    - nim c -r foo.nim
 
 about:
   home: https://nim-lang.org/

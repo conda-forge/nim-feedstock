@@ -6,10 +6,10 @@ set -vexu -o pipefail
 
 pushd nim
 # inject compilers
-echo "gcc.exe = \"$CC\"" >> config/nim.cfg
-echo "gcc.linkerexe = \"$CC\"" >> config/nim.cfg
-echo "clang.exe = \"$CC\"" >> config/nim.cfg
-echo "clang.linkerexe = \"$CC\"" >> config/nim.cfg
+echo "gcc.exe = \"$(basename $CC)\"" >> config/nim.cfg
+echo "gcc.linkerexe = \"$(basename $CC)\"" >> config/nim.cfg
+echo "clang.exe = \"$(basename $CC)\"" >> config/nim.cfg
+echo "clang.linkerexe = \"$(basename $CC)\"" >> config/nim.cfg
 ./build.sh
 bin/nim c koch
 ./koch tools
