@@ -25,8 +25,11 @@ requirements:
 
 test:
   commands:
+    - which nim
     - nim -v
+    - readlink -f $(which nim)
     - ls -larth
+    - ls -l $(dirname $(readlink -f $(which nim)))
     - echo 'echo "hello"' >| foo.nim
     - nim c -r foo.nim
 
