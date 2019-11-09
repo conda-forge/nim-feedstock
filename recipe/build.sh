@@ -6,10 +6,11 @@ set -vexu -o pipefail
 
 pushd nim
 # inject compilers
-echo "gcc.exe = \"$CC\"" >> config/nim.cfg
-echo "gcc.linkerexe = \"$CC\"" >> config/nim.cfg
-echo "clang.exe = \"$CC\"" >> config/nim.cfg
-echo "clang.linkerexe = \"$CC\"" >> config/nim.cfg
+echo "gcc.exe = \"x86_64-conda_cos6-linux-gnu-gcc\"" >> config/nim.cfg
+echo "gcc.cpp.exe = \"x86_64-conda_cos6-linux-gnu-gcc\"" >> config/nim.cfg
+echo "gcc.linkerexe = \"x86_64-conda_cos6-linux-gnu-gcc\"" >> config/nim.cfg
+echo "clang.exe = \"x86_64-conda_cos6-linux-gnu-gcc\"" >> config/nim.cfg
+echo "clang.linkerexe = \"x86_64-conda_cos6-linux-gnu-gcc\"" >> config/nim.cfg
 ./build.sh
 bin/nim c koch
 ./koch tools

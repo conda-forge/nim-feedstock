@@ -11,19 +11,28 @@ source:
   folder: nim
 
 build:
-  number: 0
+  number: 3
   skip: True  # [not linux64]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - rsync
+  host:
+    - {{ compiler('cxx') }}
   run:
     - {{ compiler('cxx') }}
 
 test:
   commands:
+    - set vex
+    - which nim
     - nim -v
+    - readlink -f $(which nim)
+    - ls -larth
+    - ls -l $(dirname $(readlink -f $(which nim)))
+#    - echo 'echo "hello"' >| foo.nim
+#    - nim c -r foo.nim
 
 about:
   home: https://nim-lang.org/
