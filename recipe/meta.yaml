@@ -25,12 +25,12 @@ requirements:
 
 test:
   commands:
+    - set vex
     - which nim
     - nim -v
     - readlink -f $(which nim)
     - ls -larth
     - ls -l $(dirname $(readlink -f $(which nim)))
-    - for dir in ${PATH//:/ }; do ls -larth $dir; done
 #    - echo 'echo "hello"' >| foo.nim
 #    - nim c -r foo.nim
 
