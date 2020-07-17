@@ -5,12 +5,24 @@
 set -vexu -o pipefail
 
 pushd nim
+
 # inject compilers
-echo "gcc.exe = \"$(basename "${CC}")\"" >> config/nim.cfg
-echo "gcc.cpp.exe = \"$(basename "${CC}")\"" >> config/nim.cfg
-echo "gcc.linkerexe = \"$(basename "${CC}")\"" >> config/nim.cfg
-echo "clang.exe = \"$(basename "${CC}")\"" >> config/nim.cfg
-echo "clang.linkerexe = \"$(basename "${CC}")\"" >> config/nim.cfg
+ldflags="${LDFLAGS}"
+if [[ ${target_platform} =~ linux.* ]]; then
+    ldflags="${ldflags} -ldl"
+fi
+cat <<EOF >> config/nim.cfg
+gcc.exe = "$(basename "${CC}")"
+gcc.cpp.exe = "$(basename "${CC}")"
+gcc.linkerexe = "$(basename "${CC}")"
+clang.exe = "$(basename "${CC}")"
+clang.linkerexe = "$(basename "${CC}")"
+gcc.options.linker = "${ldflags}"
+gcc.cpp.options.linker = "${ldflags}"
+clang.options.linker = "${ldflags}"
+clang.cpp.options.linker = "${ldflags}"
+EOF
+
 ./build.sh
 bin/nim c koch
 ./koch tools
