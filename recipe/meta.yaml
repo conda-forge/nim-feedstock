@@ -25,14 +25,10 @@ requirements:
 
 test:
   commands:
-    - set vex
-    - which nim
+    - command -v nim
     - nim -v
-    - readlink -f $(which nim)
-    - ls -larth
-    - ls -l $(dirname $(readlink -f $(which nim)))
-#    - echo 'echo "hello"' >| foo.nim
-#    - nim c -r foo.nim
+    - echo 'echo "hello"' >| foo.nim
+    - nim c -r foo.nim
 
 about:
   home: https://nim-lang.org/
