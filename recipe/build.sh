@@ -7,12 +7,14 @@ set -vexu -o pipefail
 pushd nim
 
 # inject compilers
+cc=clang
 ldflags="${LDFLAGS}"
 if [[ ${target_platform} =~ linux.* ]]; then
+    cc=gcc
     ldflags="${ldflags} -ldl"
 fi
 cat <<EOF >> config/nim.cfg
-cc = "${CC##*-}"
+cc = "${cc}"
 gcc.exe = "$(basename "${CC}")"
 gcc.cpp.exe = "$(basename "${CC}")"
 gcc.linkerexe = "$(basename "${CC}")"
