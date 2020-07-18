@@ -12,6 +12,7 @@ if [[ ${target_platform} =~ linux.* ]]; then
     ldflags="${ldflags} -ldl"
 fi
 cat <<EOF >> config/nim.cfg
+cc = "$(basename "${CC}")"
 gcc.exe = "$(basename "${CC}")"
 gcc.cpp.exe = "$(basename "${CC}")"
 gcc.linkerexe = "$(basename "${CC}")"
