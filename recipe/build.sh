@@ -37,6 +37,7 @@ fi
 
 ./build.sh
 bin/nim c koch
+./koch boot -d:release
 ./koch tools
 
 ls -larth
