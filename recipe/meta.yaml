@@ -9,6 +9,8 @@ source:
   url: https://nim-lang.org/download/nim-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   folder: nim
+  patches:
+    - 0001-gh-15042--Increase-buffer-size-for-readlink-to-1024.patch
 
 build:
   number: 0
