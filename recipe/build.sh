@@ -45,10 +45,8 @@ ls -larth bin/
 ls -larth lib/
 ls -larth config/
 
-build_dir=$(pwd)
-
-mkdir -p "${PREFIX}"
-cd "${PREFIX}"
-rsync -av "${build_dir}"/bin .
-rsync -av "${build_dir}"/lib .
-rsync -av "${build_dir}"/config .
+./install.sh "${PREFIX}"
+cp -f bin/* "${PREFIX}/nim/bin/"
+for binary in "${PREFIX}/nim/bin/"* ; do
+  ln -s "${binary}" "${PREFIX}/bin/"
+done
