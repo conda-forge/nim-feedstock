@@ -7,24 +7,33 @@ set -vexu -o pipefail
 pushd nim
 
 # inject compilers
-cc=clang
-ldflags="${LDFLAGS}"
 if [[ ${target_platform} =~ linux.* ]]; then
-    cc=gcc
-    ldflags="${ldflags} -ldl"
-fi
-cat <<EOF >> config/nim.cfg
-cc = "${cc}"
-gcc.exe = "$(basename "${CC}")"
-gcc.cpp.exe = "$(basename "${CC}")"
-gcc.linkerexe = "$(basename "${CC}")"
-clang.exe = "$(basename "${CC}")"
-clang.linkerexe = "$(basename "${CC}")"
-gcc.options.linker = "${ldflags}"
-gcc.cpp.options.linker = "${ldflags}"
-clang.options.linker = "${ldflags}"
-clang.cpp.options.linker = "${ldflags}"
+
+cat <<'EOF' >> config/nim.cfg
+gcc.exe %= "$GCC"
+gcc.cpp.exe %= "$GXX"
+gcc.linkerexe %= "$GCC"
+gcc.options.linker %= "$LDFLAGS -ldl"
+gcc.cpp.options.linker %= "$LDFLAGS -ldl"
+
+gcc.options.always %= "$CPPFLAGS $CFLAGS ${gcc.options.always}"
+gcc.cpp.options.always %= "$CPPFLAGS $CFLAGS ${gcc.cpp.options.always}"
 EOF
+
+else
+
+cat <<'EOF' >> config/nim.cfg
+clang.exe %= "$CLANG"
+clang.cpp.exe %= "$CLANGXX"
+clang.linkerexe %= "$CLANG"
+clang.options.linker %= "$LDFLAGS"
+clang.cpp.options.linker %= "$LDFLAGS"
+
+clang.options.always %= "$CPPFLAGS $CFLAGS ${gcc.options.always}"
+clang.cpp.options.always %= "$CPPFLAGS $CFLAGS ${gcc.cpp.options.always}"
+EOF
+
+fi
 
 ./build.sh
 bin/nim c koch
