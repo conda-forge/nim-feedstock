@@ -12,21 +12,34 @@ source:
 
 build:
   number: 0
-  skip: True  # [not (linux64 or osx)]
+  skip: True  # [win]
 
 requirements:
   build:
+    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - rsync
   host:
+    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   run:
+    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # used by nimble
+    - openssl >=1.1
+    # used by nimgrep
+    - pcre
 
 test:
   commands:
     - command -v nim
-    - nim -v
+    - nim --version
+    - nimble --version
+    - nimfind --version
+    - nimgrep --version
+    - nimpretty --version
+    - nimsuggest --version
+    - '{ testament 2>&1 || true ; } | grep -qxF Usage:'
     - echo 'echo "hello"' >| foo.nim
     - nim c -r foo.nim
 
