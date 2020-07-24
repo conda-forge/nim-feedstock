@@ -13,7 +13,7 @@ source:
     - 0001-gh-15042--Increase-buffer-size-for-readlink-to-1024.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -22,11 +22,9 @@ requirements:
     - {{ compiler('cxx') }}
     - rsync
   host:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   run:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - {{ c_compiler }}_{{ target_platform }}
+    - {{ cxx_compiler }}_{{ target_platform }}
     # used by nimble
     - openssl >=1.1
     # used by nimgrep

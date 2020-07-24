@@ -47,6 +47,7 @@ ls -larth config/
 
 ./install.sh "${PREFIX}"
 cp -f bin/* "${PREFIX}/nim/bin/"
+mkdir -p "${PREFIX}/bin"
 for binary in "${PREFIX}/nim/bin/"* ; do
   ln -s "${binary}" "${PREFIX}/bin/"
 done
