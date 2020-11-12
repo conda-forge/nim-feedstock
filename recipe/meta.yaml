@@ -1,5 +1,5 @@
-{% set version = "1.2.4" %}
-{% set sha256 = "eef18f32fabe65f0d06a40f32e297d1f6daba66463c33f3ab57edc4d3530d636" %}
+{% set version = "1.4.0" %}
+{% set sha256 = "9dfba2bed31a21a5a34231016dd556b1b5e0db23c01357cfab26aa8f27a6c23d" %}
 
 package:
   name: nim
@@ -13,7 +13,7 @@ source:
     - 0001-gh-15042--Increase-buffer-size-for-readlink-to-1024.patch
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
 
 requirements:
