@@ -1,5 +1,5 @@
-{% set version = "1.4.0" %}
-{% set sha256 = "9dfba2bed31a21a5a34231016dd556b1b5e0db23c01357cfab26aa8f27a6c23d" %}
+{% set version = "1.4.2" %}
+{% set sha256 = "03a47583777dd81380a3407aa6a788c9aa8a67df4821025770c9ac4186291161" %}
 
 package:
   name: nim
@@ -9,8 +9,6 @@ source:
   url: https://nim-lang.org/download/nim-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   folder: nim
-  patches:
-    - 0001-gh-15042--Increase-buffer-size-for-readlink-to-1024.patch
 
 build:
   number: 0
