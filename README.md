@@ -149,6 +149,3 @@ Feedstock Maintainers
 
 * [@pb-cdunn](https://github.com/pb-cdunn/)
 
-
-<!-- dummy commit to enable rerendering -->
-
