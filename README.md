@@ -148,5 +148,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@btcross26](https://github.com/btcross26/)
 * [@pb-cdunn](https://github.com/pb-cdunn/)
 
