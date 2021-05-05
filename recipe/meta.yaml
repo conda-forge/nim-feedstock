@@ -1,4 +1,4 @@
-{% set version = "1.4.4" %}
+{% set version = "1.4.6" %}
 {% set sha256 = "6d73729def143f72fc2491ca937a9cab86d2a8243bd845a5d1403169ad20660e" %}
 
 package:
