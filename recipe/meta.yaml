@@ -1,5 +1,5 @@
-{% set version = "1.4.8" %}
-{% set sha256 = "b798c577411d7d95b8631261dbb3676e9d1afd9e36740d044966a0555b41441a" %}
+{% set version = "1.6.8" %}
+{% set sha256 = "0f5b65cdb60f78af41cb075c238983689a1e1f7e25c819f179862c18a484cf57" %}
 
 package:
   name: nim
@@ -12,7 +12,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -46,9 +46,9 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Nim programming language, by Andreas Rumpf (araq@)'
+  summary: Nim programming language, by Andreas Rumpf (araq@)
   description: |
-      Nim is a statically typed compiled systems programming language. It combines successful concepts from mature languages like Python, Ada and Modula.
+    Nim is a statically typed compiled systems programming language. It combines successful concepts from mature languages like Python, Ada and Modula.
   doc_url: https://nim-lang.org/documentation.html
   dev_url: https://github.com/nim-lang/Nim
 
