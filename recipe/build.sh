@@ -6,10 +6,13 @@ set -vexu -o pipefail
 
 pushd nim
 
+#  Avoid SYS_Random since glibc < 2.25
+echo '-d:nimNoGetRandom' >>config/nim.cfg
+
 # inject compilers
 if [[ ${target_platform} =~ linux.* ]]; then
 
-cat <<'EOF' >> config/nim.cfg
+	cat <<'EOF' >>config/nim.cfg
 gcc.exe %= "$GCC"
 gcc.cpp.exe %= "$GXX"
 gcc.linkerexe %= "$GCC"
@@ -22,7 +25,7 @@ EOF
 
 else
 
-cat <<'EOF' >> config/nim.cfg
+	cat <<'EOF' >>config/nim.cfg
 clang.exe %= "$CLANG"
 clang.cpp.exe %= "$CLANGXX"
 clang.linkerexe %= "$CLANG"
@@ -35,6 +38,7 @@ EOF
 
 fi
 
+ldd --version
 ./build.sh
 bin/nim c koch
 ./koch boot -d:release
@@ -48,6 +52,6 @@ ls -larth config/
 ./install.sh "${PREFIX}"
 cp -f bin/* "${PREFIX}/nim/bin/"
 mkdir -p "${PREFIX}/bin"
-for binary in "${PREFIX}/nim/bin/"* ; do
-  ln -s "${binary}" "${PREFIX}/bin/"
+for binary in "${PREFIX}/nim/bin/"*; do
+	ln -s "${binary}" "${PREFIX}/bin/"
 done
