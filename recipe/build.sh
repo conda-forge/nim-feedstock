@@ -38,7 +38,6 @@ EOF
 
 fi
 
-ldd --version
 ./build.sh
 bin/nim c koch
 ./koch boot -d:release
