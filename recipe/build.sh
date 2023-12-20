@@ -38,9 +38,26 @@ EOF
 
 fi
 
-./build.sh
-bin/nim c koch
-./koch boot -d:release
+# https://stackoverflow.com/questions/4247068/sed-command-with-i-option-failing-on-mac-but-works-on-linux
+# semi-portable sed
+# sed -i'' -e 's/set -e/set -ex/g' build.sh
+
+# osx-arm64 is cross-compiled by osx-amd64
+if [[ ${target_platform}  =~ osx-arm64* ]];then
+  CPU="arm64"
+  CC=${CC_FOR_BUILD} ./build.sh
+  bin/nim c \
+    --clang.exe:"${CC_FOR_BUILD}" \
+    --clang.linkerexe:"$CC_FOR_BUILD" \
+    koch
+  # koch can't boot strip `nim` with `nim1`
+  ./koch boot -d:release --cpu:"$CPU"
+else
+  ./build.sh
+  bin/nim c koch
+  ./koch boot -d:release
+fi
+
 ./koch tools
 
 ls -larth
