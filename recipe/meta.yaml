@@ -1,5 +1,5 @@
-{% set version = "2.0.4" %}
-{% set sha256 = "d44c8d6bc39f3907ebdc8d7085f63ea720955467f4e36cdb9a9555446b328ef9" %}
+{% set version = "2.0.6" %}
+{% set sha256 = "fbcd5d731743adec2b3bb9bcf6f5fd993ed11b250f957166bebf328f307cba6a" %}
 
 package:
   name: nim
@@ -17,6 +17,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - rsync
   host:
