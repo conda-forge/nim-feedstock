@@ -1,5 +1,5 @@
-{% set version = "2.2.4" %}
-{% set sha256 = "f82b419750fcce561f3f897a0486b180186845d76fb5d99f248ce166108189c7" %}
+{% set version = "2.2.6" %}
+{% set sha256 = "657b0e3d5def788148d2a87fa6123fa755b2d92cad31ef60fd261e451785528b" %}
 
 package:
   name: nim
